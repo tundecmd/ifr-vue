@@ -2,16 +2,39 @@
   <v-app>
   <v-app-bar
     app
-    color="primary"
-
+    color="yellow"
   >
-    <v-toolbar-title>IFARA</v-toolbar-title>
+    <v-toolbar-title class="blue--text">
+      <router-link to="/" text class="text-decoration-none">
+      <v-btn 
+        text
+        class="blue--text text-uppercase text-h4"
+      >
+        IFARA
+      </v-btn>
+    </router-link>
+    </v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-btn text rounded>Home</v-btn>
-    <v-btn text>About Us</v-btn>
+    <router-link to="/" text class="text-decoration-none">
+      <v-btn 
+        text
+        class="blue--text text-capitalize text-h5"
+      >
+        Home
+      </v-btn>
+    </router-link>
+    <router-link to="/about" text class="text-decoration-none">
+      <v-btn 
+        text
+        class="blue--text text-capitalize text-h5"
+      >
+        About Us
+      </v-btn>
+    </router-link>
+    <!-- <router-link to="/about" text class="blue--text">About Us</router-link> -->
   </v-app-bar>
   <v-content>
-
+    <router-view></router-view>    
   </v-content>
   
   <v-footer
@@ -21,29 +44,37 @@
     <v-card
       flat
       tile
-      class="indigo lighten-1 white--text text-center"
+      width="100%"
+      class="yellow blue--text text-center"
     >
-      <v-card-text>
-        <v-btn
-          v-for="icon in icons"
-          :key="icon"
-          class="mx-4 white--text"
+      <v-card-text class="my-5 blue--text pt-0 pb-0">
+        Suite 20, Oadis plaza, 4 CMD road, Ikosi-GRA, Lagos
+        Phone: 234(0)8071914351
+      </v-card-text>
+      <v-card-text class="blue--text pt-0 font-italic">
+        info@ifarabooks.com
+      </v-card-text>
+      <v-card-text class="blue--text pt-0">
+        Open Hours:
+        Mon-Fri: 9:00am - 5:00am
+        Sat - Sun: CLOSED
+      </v-card-text>
+      <v-card-text 
+        class="mx-4 blue--text"
+      >
+        <a
+          v-for="(icon, i) in icons"
+          :key="i"
+          class="mx-4 blue--text text-decoration-none"
           icon
+          :href="icon.urlLink"
+          target="_blank" 
+          rel="noopener noreferrer"
         >
-          <v-icon size="24px">
-            {{ icon }}
+          <v-icon size="24px" class="mx-4 blue--text">
+            {{ icon.logo }}
           </v-icon>
-        </v-btn>
-      </v-card-text>
-
-      <v-card-text class="white--text pt-0">
-        Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-      </v-card-text>
-
-      <v-divider></v-divider>
-
-      <v-card-text class="white--text">
-        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+        </a>
       </v-card-text>
     </v-card>
   </v-footer>
@@ -53,16 +84,47 @@
 <script>
 
 export default {
+
+  
   name: 'App',
 
   data: () => ({ 
     //
+    slides: [
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
+          },
+          {
+            src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg',
+          },
+        ],
     icons: [
-      'mdi-facebook',
-      'mdi-twitter',
-      'mdi-linkedin',
-      'mdi-instagram',
-    ],
-  }),
+      {
+        logo: 'mdi-facebook',
+        urlLink: 'https://www.facebook.com'
+      },
+      {
+        logo: 'mdi-twitter',
+        urlLink: 'https://www.facebook.com'
+      },
+      {
+        logo: 'mdi-linkedin',
+        urlLink: 'https://www.linkedin.com/'
+      },
+      {
+        logo: 'mdi-instagram',
+        urlLink: 'https://www.instagram.com/'
+      }
+    ]
+  })
 };
 </script>
